@@ -1,0 +1,190 @@
+/* PANW brand tokens */
+:root {
+  --orange: #FA582D;
+  --navy:   #0D1B2E;
+  --grey:   #F4F4F4;
+  --white:  #FFFFFF;
+  --text:   #333333;
+  --muted:  #888888;
+  --border: #E0E0E0;
+  --red:    #D93025;
+  --radius: 8px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, system-ui, sans-serif;
+  background: var(--grey);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Navbar ─────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: var(--navy);
+  padding: 0 32px;
+  height: 64px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+
+.navbar a { text-decoration: none; }
+
+.logo-nav {
+  height: 36px;
+  display: block;
+  background: var(--white);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* ── Hero ─────────────────────────────────── */
+.hero {
+  background: var(--navy);
+  color: var(--white);
+  padding: 56px 32px 64px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(24px, 3.5vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero p {
+  margin-top: 14px;
+  font-size: 17px;
+  color: rgba(255,255,255,.75);
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ── Form card ────────────────────────────── */
+.form-wrap {
+  max-width: 480px;
+  margin: -32px auto 64px;
+  padding: 0 20px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 32px;
+}
+
+.card h2 {
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--white);
+  transition: border-color .15s, box-shadow .15s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(13, 27, 46, 0.10);
+}
+
+.form-error {
+  font-size: 13px;
+  color: var(--red);
+  min-height: 18px;
+  margin-bottom: 4px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 13px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--orange);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity .15s, transform .1s;
+  margin-top: 8px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Thank-you card ────────────────────────── */
+.thankyou-wrap {
+  max-width: 520px;
+  margin: 48px auto 64px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.thankyou-wrap .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #E8F5E9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #2E7D32;
+  flex-shrink: 0;
+}
+
+.thankyou-wrap h2 {
+  font-size: 22px;
+  color: var(--navy);
+}
+
+.thankyou-wrap p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 380px;
+}

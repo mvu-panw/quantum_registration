@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Quantum-Safe Networking</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html"><img src="panw_logo.png" alt="Palo Alto Networks" class="logo-nav"></a>
+  </nav>
+
+  <div class="hero">
+    <h1>Palo Alto Networks Quantum Lunch and Learn</h1>
+    <p>Register for our virtual Lunch and Learn to learn more about NGFW Quantum capabilities.</p>
+  </div>
+
+  <div class="form-wrap">
+    <div class="card">
+      <h2>Register for your briefing</h2>
+      <form id="reg-form" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Work Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" autocomplete="organization" placeholder="Acme Corp" required>
+        </div>
+
+        <p class="form-error" id="form-error" aria-live="polite"></p>
+        <button type="submit" class="btn-submit" id="submit-btn">Register Now</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('reg-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim().toLowerCase();
+      const company = document.getElementById('company').value.trim();
+      const errorEl = document.getElementById('form-error');
+      const btn     = document.getElementById('submit-btn');
+
+      errorEl.textContent = '';
+
+      if (!name || !email || !company) {
+        errorEl.textContent = 'Please fill in all fields.';
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = 'Submitting…';
+
+      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwA6gakOEivGu4qKpRxdFocHI_t5h8_YBheKzksrpxsO0RHLBp16cGnsa5XLX1A_Naxw/exec';
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ name, email, company })
+        });
+      } catch (_) {
+        errorEl.textContent = 'Something went wrong. Please try again.';
+        btn.disabled    = false;
+        btn.textContent = 'Register Now';
+        return;
+      }
+
+      window.location.href = 'thank-you.html';
+    });
+  </script>
+
+</body>
+</html>
